@@ -53,6 +53,19 @@ class App extends Component {
     this.setState({ message: 'You have been entered sucessfully!'});
   };
 
+  onClick = async () => {
+
+    const accounts = await web3.eth.getAccounts();
+
+    this.setState({ message: 'Waiting on transaction sucess ...'});
+
+    await lottery.methods.pickWinner().send({
+      from: accounts[0]
+    });
+
+    this.setState({ message: 'A winner has been picked!'});
+  };
+
   render() {
     return (
 
@@ -60,6 +73,8 @@ class App extends Component {
       <h2> Lottery Contract </h2>
       <p> 
         This contract is managed by {this.state.manager} 
+      </p>
+      <p>
         There are currently {this.state.players.length} people entered, 
         competing to win { web3.utils.fromWei(this.state.balance,'ether') } ether!
       </p>
@@ -77,6 +92,11 @@ class App extends Component {
         </div>
         <button> Enter </button>
        </form> 
+
+       <hr />
+
+       <h4> Ready to pick a winner ? </h4>
+       <button onClick = {this.onClick}> Pick a winner! </button>
 
        <hr />
 
