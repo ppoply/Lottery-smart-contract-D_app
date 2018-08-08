@@ -1,5 +1,5 @@
 # Lottery-smart-contract-react-app
-A very basic web app for the lottery smart contract projectdone earlier (https://github.com/ppoply/Lottery-smart-contract)
+A very basic web app for the lottery smart contract project done earlier (https://github.com/ppoply/Lottery-smart-contract)
 
 Info about the project :
 - React.js has been used for the user interface just because of its simplicity for development.
