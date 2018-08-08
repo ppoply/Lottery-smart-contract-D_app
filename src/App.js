@@ -10,8 +10,8 @@ class App extends Component {
     manager: '',
     players: [],
     balance: '',
-    value: ''
-
+    value: '',
+    message: ''
   };
 
    /* 
@@ -24,8 +24,9 @@ class App extends Component {
       manager: '',
       players: [],
       balance: '',
-      value: ''
-      };
+      value: '',
+      message: ''
+    };
   }
   */
 
@@ -42,10 +43,14 @@ class App extends Component {
 
     const accounts = await web3.eth.getAccounts();
 
+    this.setState({ message: 'Waiting on transaction sucess ...'});
+
     await lottery.methods.enter().send({
       from: accounts[0],
       value: web3.utils.toWei(this.state.value,'ether')
     });
+
+    this.setState({ message: 'You have been entered sucessfully!'});
   };
 
   render() {
@@ -72,6 +77,10 @@ class App extends Component {
         </div>
         <button> Enter </button>
        </form> 
+
+       <hr />
+
+       <h1>{ this.state.message }</h1>
     </div>
 
     );
